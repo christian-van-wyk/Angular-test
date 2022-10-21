@@ -1,0 +1,29 @@
+<main>
+    <section>
+        <div class="inner">
+            <div>
+                <label for="user-search">User search</label>
+                <input id="user-search" type="text" [(ngModel)]="name">
+                <button type="submit" (click)="search()">Search</button>
+                <span class="error">{{errorMessage}}</span>
+            </div>
+            <table>
+                <tr>
+                    <th>Usernames</th>
+                    <th>User Type</th>
+                    <th>Profile image</th>
+                    <th>Actions</th>
+                </tr>
+                <tr *ngFor="let user of users|slice: page : (page + 10); let i = index">
+                    <td><strong>Username:</strong> {{user.login}}</td>
+                    <td><strong>Username Type:</strong> {{user.type}}</td>
+                    <td><img src="{{user.avatar_url}}" alt="{{user.gravatar_id}}"></td>
+                    <td><a href="{{user.html_url}}" target="_blank">See profile</a></td>
+                </tr>
+            </table>
+            <div class="btn-container">
+                <button *ngFor="let user of users|slice: 0 : (users.length / 10); let i = index" (click)="pageSwitch(i)">pagi</button>
+            </div>
+        </div>
+    </section>
+</main>
